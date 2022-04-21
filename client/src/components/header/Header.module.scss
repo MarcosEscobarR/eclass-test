@@ -1,0 +1,28 @@
+.AppHeader {
+  background-color: #000000;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  .logo {
+    display: flex;
+    align-items: center;
+    img {
+      max-width: 50px;
+      max-height: 50px;
+    }
+    p {
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.btnContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
