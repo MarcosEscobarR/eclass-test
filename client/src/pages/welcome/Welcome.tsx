@@ -1,19 +1,21 @@
-import './welcome.css'
+// @ts-ignore
+import styles from './welcome.module.scss'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {SpotifyModel} from "../../models/SpotifyModel";
+import {Item, SpotifyModel} from "../../models/SpotifyModel";
 import Header from "../../components/header/Header";
+import RenderTracks from "../../components/renderTracks/renderTracks";
+
 
 
 const Welcome = () => {
     const [token, setToken] = useState("")
     const [searchKey, setSearchKey] = useState("")
-    const [items, setItems] = useState<SpotifyModel>({} as SpotifyModel)
+    const [items, setItems] = useState<SpotifyModel>()
     useEffect(() => {
         const hash = window.location.hash
         let token = window.localStorage.getItem("token")
 
-        console.log(token)
         if (!token && hash) {
             token = hash!.substring(1).split("&")?.find(elem => elem.startsWith("access_token"))?.split("=")[1]!
 
@@ -37,30 +39,42 @@ const Welcome = () => {
                 include_external: 'audio'
             }
         })
-
         setItems(data)
     }
 
-    const renderArtists = () => {
-        return items.artists?.items.map(artist => (
-            <div key={artist.id}>
-                {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-                {artist.name}
+    const renderList = (items: Item[] | undefined, title: string) => {
+        if (!items) return;
+
+        return <div>
+            <p className={styles.title}>{title}</p>
+            <div className={styles.itemsContainer}>
+                {items.map(item => (
+                    <div className={styles.coverContainer} key={item.id}>
+                        {item.images?.length ? <img width={"100%"} src={item.images[0].url} alt=""/> :
+                            <p>No Image</p>
+                        }
+                        <p>{item.name}</p>
+                    </div>
+                ))}
             </div>
-        ))
+        </div>
     }
 
+
     return <>
-        <div className="container">
+        <div className={styles.container}>
             <Header/>
             <form onSubmit={searchArtists}>
                 <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                 <button type={"submit"}>Search</button>
             </form>
-
-            {renderArtists()}
-
-
+            <div className={styles.main}>
+                <div className={styles.slider}>
+                    {renderList(items?.artists.items, "Artists  ")}
+                    {renderList(items?.albums.items, "Albums")}
+                    <RenderTracks items={items?.tracks.items!}/>
+                </div>
+            </div>
         </div>
     </>
 }

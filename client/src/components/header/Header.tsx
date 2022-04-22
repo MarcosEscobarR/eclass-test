@@ -28,7 +28,9 @@ const Header = () => {
     }, [])
 
     const handleClick = () => {
-        if (token) {
+        console.log(token)
+
+        if (!token) {
             window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
             return
         }
