@@ -1,12 +1,9 @@
-// @ts-ignore
-import styles from './welcome.module.scss'
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+﻿import React, {useEffect, useState} from "react";
 import {Item, SpotifyModel} from "../../models/SpotifyModel";
-import Header from "../../components/header/Header";
-import RenderTracks from "../../components/renderTracks/renderTracks";
-
-
+import axios from "axios";
+// @ts-ignore
+import styles from "./SpotifyItems.module.scss";
+import RenderTracks from "../renderTracks/renderTracks";
 
 const Welcome = () => {
     const [token, setToken] = useState("")
@@ -63,7 +60,6 @@ const Welcome = () => {
 
     return <>
         <div className={styles.container}>
-            <Header/>
             <form onSubmit={searchArtists}>
                 <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                 <button type={"submit"}>Search</button>
@@ -80,4 +76,3 @@ const Welcome = () => {
 }
 
 export default Welcome
-

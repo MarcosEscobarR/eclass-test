@@ -5,7 +5,15 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import Auth from './auth'
+import {AppDataSource} from "./data-source";
+import History from './history'
+import Favorites from "./favorites";
+import Playlist from "./playlist";
+
+AppDataSource.initialize()
+    .then(() => {
+        console.log("Database initialized")
+    }).catch(e => console.log(e));
 
 dotenv.config();
 
@@ -25,7 +33,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use('/api/auth', Auth)
+app.use('/api/history', History)
+app.use('/api/favorites', Favorites)
+app.use('/api/playlists', Playlist)
 
 /**
  * Server Activation

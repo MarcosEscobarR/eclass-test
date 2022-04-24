@@ -4,20 +4,18 @@ import './index.css';
 import Home from './pages/home/Home';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {PrivateRoute} from "./pages/shared/PrivateRoute";
-import Welcome from "./pages/welcome/Welcome";
-
-
+import {Provider} from "react-redux";
+import store from './store/store'
 
 ReactDOM.render(
-  <React.StrictMode>
-      <BrowserRouter>
-          <Routes>
-              <Route element={<Home/>} path="/"/>
-              <Route path="/welcome" element={<PrivateRoute component={Welcome}/>} />
-          </Routes>
-      </BrowserRouter>
-  </React.StrictMode>,
+    <Provider store={store}><React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Home/>} path="/"/>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
+    </Provider>,
   document.getElementById('root')
 );
 
