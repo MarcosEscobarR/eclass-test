@@ -1,7 +1,5 @@
-
-.itemsContainer {
+﻿.itemsContainer {
   width: calc(100vw - 420px);
-  height: auto;
   overflow-x: auto;
   display: flex;
 }
@@ -14,15 +12,14 @@
 .coverContainer {
   padding: 20px;
   width: 350px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   img {
     width: 250px;
     object-fit: contain;
     border-radius: 100px;
-
   }
 
   p {

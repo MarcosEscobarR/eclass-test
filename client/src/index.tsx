@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from './store/store'
+import Tests from "./pages/tests";
 
 ReactDOM.render(
     <Provider store={store}><React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route element={<Home/>} path="/"/>
+                <Route element={<Tests/>} path="/test"/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

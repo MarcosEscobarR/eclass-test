@@ -5,10 +5,10 @@ import {Favorite} from "./entities/Favorite.entity";
 
 const favoriteRepository = AppDataSource.getRepository(Favorite);
 
-export async function AddFavorite({UserId, MusicUri}: AddFavoriteDto): Promise<Result> {
-
+export async function AddFavorite({UserId, MusicUri, MusicName}: AddFavoriteDto): Promise<Result> {
     
-    const favorite = new Favorite(MusicUri, UserId)
+    const favorite = new Favorite(MusicUri, UserId, MusicName)
+    console.log(favorite)
     await favoriteRepository.save(favorite)
     
     return Result.created()

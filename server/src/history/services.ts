@@ -4,9 +4,9 @@ import {AppDataSource} from "../data-source";
 import {Result} from "../commond/result";
 
 const historyRepository = AppDataSource.getRepository(History);
-export async function AddHistory({UserId, MusicUri}: CreateHistoryDto): Promise<Result> {
+export async function AddHistory({UserId, MusicUri, MusicName}: CreateHistoryDto): Promise<Result> {
 
-    const history = new History(UserId, MusicUri);
+    const history = new History(UserId, MusicUri, MusicName);
     await historyRepository.save(history);
     return Result.created();
 }

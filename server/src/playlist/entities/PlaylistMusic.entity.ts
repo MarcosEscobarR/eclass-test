@@ -8,9 +8,7 @@ export class PlaylistMusic {
     }
     @PrimaryColumn({generated: "increment"})
     Id: number;
-    @Column({
-        length: 100
-    })
+    @Column()
     MusicUri: string;
     @ManyToOne(() => Playlist, p => p.PlaylistMusics, {onDelete: "CASCADE"})
     @JoinColumn()

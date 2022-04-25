@@ -1,17 +1,18 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryColumn} from "typeorm";
+import {Column, Entity, PrimaryColumn} from "typeorm";
 
 @Entity()
 export class Favorite {
-    constructor(musicUri: string, userId: string) {
+    constructor(musicUri: string, userId: string, musicName: string) {
         this.MusicUri = musicUri;
         this.UserId = userId;
+        this.MusicName = musicName
     }
     @PrimaryColumn({generated: "increment"})
     Id: number;
-    @Column({
-        length: 100
-    }) 
+    @Column()
     MusicUri: string;
-    @Column({unique: true})
+    @Column()
+    MusicName: string
+    @Column()
     UserId: string
 }

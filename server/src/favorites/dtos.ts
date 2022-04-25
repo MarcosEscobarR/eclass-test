@@ -2,10 +2,12 @@
 
 export interface AddFavoriteDto {
     MusicUri: string,
-    UserId: string
+    UserId: string,
+    MusicName: string
 }
 
 export const AddFavoriteDtoSchema = Joi.object<AddFavoriteDto>({
-    MusicUri: Joi.string().max(100).required(),
+    MusicUri: Joi.string().required(),
+    MusicName: Joi.string().required(),
     UserId: Joi.string().required()
 })
